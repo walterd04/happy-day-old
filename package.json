@@ -10,8 +10,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "cd client && yarn test && cd ..",
-      "pre-push": "cd client && yarn test && cd .."
+      "pre-commit": "cd client && yarn test && cd .. && cd api && yarn test",
+      "pre-push": "cd client && yarn test && cd .. && cd api && yarn test"
     }
   },
   "license": "ISC",
