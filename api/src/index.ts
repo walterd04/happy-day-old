@@ -1,18 +1,10 @@
 import express from 'express';
-import { Request, Response } from 'express';
+import 'reflect-metadata';
+import App from './app';
+import DIContainer from './di-container';
 
-const app = express();
+const PORT: number = parseInt(process.env.PORT as string, 10) || 3000;
 
-const PORT = process.env.PORT || 3000;
-
-app.get('/', (req: Request, res: Response) => {
-  res.send({
-    message: 'Hello World from happy-day API',
-  });
-});
-
-app.listen(PORT, () =>
-  console.log(`api server listening on http://localhost:${PORT}`),
-);
+const app = new App([], PORT);
 
 export default app;
