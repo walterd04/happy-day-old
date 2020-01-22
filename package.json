@@ -6,7 +6,17 @@
   "author": "Devin Walter",
   "repository": {
     "type": "git",
-    "url": "https://github.com/walterd04/unknown-name.git"
+    "url": "https://github.com/walterd04/happy-day.git"
   },
-  "license": "ISC"
+  "husky": {
+    "hooks": {
+      "pre-commit": "cd client && yarn test && cd ..",
+      "pre-push": "cd client && yarn test && cd .."
+    }
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^4.2.0",
+    "typescript": "^3.7.5"
+  }
 }
