@@ -1,28 +1,31 @@
-// @ts-nocheck
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import NavBar from "./NavBar";
 import { useAuth0 } from "./react-auth0-spa";
 
 const App = () => {
-  const { loading } = useAuth0();
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+    isInitializing,
+  } = useAuth0();
 
-  if (loading) {
-    return <div>Loading...</div>;
+  if (isInitializing) {
+    return (
+      <div>
+        <h1>This is the happy-day app server side rendered loading.</h1>
+      </div>
+    );
   }
 
   return (
     <div>
-      <Router history={history}>
-        <header>
-          <NavBar />
-        </header>
-        <Switch>
-          <Route path="/" exact />
-          <Route path="/profile" />
-        </Switch>
-      </Router>
+      {!isAuthenticated && (
+        <button onClick={() => loginWithRedirect({})}>Log in</button>
+      )}
+
+      {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
     </div>
   );
 };
