@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import ThemeProvider from "./ThemeProvider";
 import { useAuth0 } from "./react-auth0-spa";
 
 const App = () => {
@@ -20,13 +21,15 @@ const App = () => {
   }
 
   return (
-    <div>
-      {!isAuthenticated && (
-        <button onClick={() => loginWithRedirect({})}>Log in</button>
-      )}
+    <ThemeProvider>
+      <div>
+        {!isAuthenticated && (
+          <button onClick={() => loginWithRedirect({})}>Log in</button>
+        )}
 
-      {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
-    </div>
+        {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
+      </div>
+    </ThemeProvider>
   );
 };
 
