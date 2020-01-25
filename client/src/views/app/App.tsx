@@ -1,10 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { createUseStyles, useTheme } from "react-jss";
 
 import ThemeProvider from "./ThemeProvider";
 import { useAuth0 } from "./react-auth0-spa";
+import { Theme } from "../../types";
+
+const useStyles = createUseStyles((theme: Theme) => {});
 
 const App = () => {
+  const theme = useTheme();
+  const classes: Record<string, any> = useStyles({ theme });
   const {
     isAuthenticated,
     loginWithRedirect,
@@ -24,7 +30,12 @@ const App = () => {
     <ThemeProvider>
       <div>
         {!isAuthenticated && (
-          <button onClick={() => loginWithRedirect({})}>Log in</button>
+          <button
+            className={classes.buttonPrimary}
+            onClick={() => loginWithRedirect({})}
+          >
+            Log in
+          </button>
         )}
 
         {isAuthenticated && <button onClick={() => logout()}>Log out</button>}

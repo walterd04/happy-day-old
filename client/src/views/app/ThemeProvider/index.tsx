@@ -96,6 +96,13 @@ const useStyles = createUseStyles({
         cursor: "not-allowed",
       },
     },
+    buttonPrimary: {
+      display: "block",
+      backgroundColor: theme.colors.primary,
+      color: theme.colors.darkGray,
+      border: "1px solid theme.colors.primary",
+      borderRadius: "50px",
+    },
   },
 });
 
