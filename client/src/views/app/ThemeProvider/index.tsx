@@ -12,7 +12,7 @@ const colors: Colors = {
   tertiary: "#713E5A",
   quarternary: "#226F54",
   green: "#018E42",
-  white: "#F6F4D2",
+  white: "#EEEEEE",
   lightGray: "#D9D9D9",
   darkGray: "#595959",
   black: "#080705",
@@ -21,7 +21,7 @@ const colors: Colors = {
 };
 
 const typography: Typography = {
-  fontFamily: "'FranklinGothic URW Comp', Helvetica, sans-serif",
+  fontFamily: "'Noto Sans', Helvetica, sans-serif",
   color: "#000",
 };
 

@@ -6,40 +6,35 @@ import ThemeProvider from "./ThemeProvider";
 import { useAuth0 } from "./react-auth0-spa";
 import { Theme } from "../../types";
 
+import NavBar from "./components/NavBar";
+import LandingPage from "./views/LandingPage";
+import Home from "./views/Home";
+import UserProfile from "./views/UserProfile";
+
 const useStyles = createUseStyles((theme: Theme) => {});
 
 const App = () => {
   const theme = useTheme();
   const classes: Record<string, any> = useStyles({ theme });
-  const {
-    isAuthenticated,
-    loginWithRedirect,
-    logout,
-    isInitializing,
-  } = useAuth0();
-
-  if (isInitializing) {
-    return (
-      <div>
-        <h1>This is the happy-day app server side rendered loading.</h1>
-      </div>
-    );
-  }
+  const { isAuthenticated } = useAuth0();
 
   return (
     <ThemeProvider>
-      <div>
-        {!isAuthenticated && (
-          <button
-            className={classes.buttonPrimary}
-            onClick={() => loginWithRedirect({})}
-          >
-            Log in
-          </button>
-        )}
-
-        {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
-      </div>
+      <>
+        <NavBar />
+        <Router>
+          {!isAuthenticated ? (
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+            </Switch>
+          ) : (
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/user" component={UserProfile} />
+            </Switch>
+          )}
+        </Router>
+      </>
     </ThemeProvider>
   );
 };

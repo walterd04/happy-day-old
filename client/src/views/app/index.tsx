@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from "react";
 import { render } from "react-dom";
 import App from "./App";
@@ -27,3 +28,7 @@ render(
   </Auth0Provider>,
   container,
 );
+
+if (module.hot) {
+  module.hot.accept();
+}
